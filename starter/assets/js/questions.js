@@ -3,15 +3,15 @@ const questions = [
     {
         question: "Inside which HTML element do we put the JavaScript? ",
         choices: [
-            "<js>",
-            "<script>",
-            "<javascript>",
-            "<scripting>"
+            "&lt;js&gt;",
+            "&lt;script&gt;",
+            "&lt;javascript&gt;",
+            "&lt;scripting&gt;"
         ],
-        answer: "<script>"
+        answer: "&lt;script&gt;"
     },
     {
-        question: "What is the correct JavaScript syntax to change the content of the HTML element below? \n <p id='demo'>This is a demonstration.</p> ",
+        question: "What is the correct JavaScript syntax to change the content of the HTML element below? \n &lt;p id='demo'&gt;This is a demonstration.&lt;/p&gt; ",
         choices: [
             "document.getElementByName ('p').innerHTML = 'Hello World!'; ",
             "document.getElement('o').innerHTML = 'Hello World!'; ",
@@ -23,16 +23,16 @@ const questions = [
     {
         question: "Inside which HTML element do we put the JavaScript? ",
         choices:[
-            "the <head> section",
-            "both the <head> section and <body> section are correct",
-            "the <body> section"
+            "the &lt;head&gt; section",
+            "both the &lt;head&gt; section and &lt;body&gt; section are correct",
+            "the &lt;body&gt; section"
         ],
-        answer: "both the <head> section and <body> section are correct",
+        answer: "both the &lt;head&gt; section and &lt;body&gt; section are correct",
 
 
     },
     {
-        question: "The external JavaScript file must contain the <script> tag.",
+        question: "The external JavaScript file must contain the &lt;script&gt; tag.",
         choices: [
             "true",
             "false",
@@ -42,12 +42,12 @@ const questions = [
     {
         question: "How do you write 'Hello World' in an alert box? ",
         choices: [
-            "<msgBox('Hello World')>",
-            "<msg('Hello World')>",
-            "<alert('Hello World')>",
-            "<alertBox('Hello World')>"
+            "&lt;msgBox('Hello World')&gt;",
+            "&lt;msg('Hello World')&gt;",
+            "&lt;alert('Hello World')&gt;",
+            "&lt;alertBox('Hello World')&gt;"
         ],
 
-        answer: "<alert('Hello World')>"
+        answer: "&lt;alert('Hello World')&gt;"
     }
 ]
