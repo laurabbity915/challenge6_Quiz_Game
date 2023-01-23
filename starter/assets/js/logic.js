@@ -22,19 +22,40 @@ function showQuestion() {
     let displayQuestions = getFromStorage('questions');
     let choices = '';
     let stage = getFromStorage('stage');
-    document.getElementById('question-title').innerText = displayQuestions[stage].question;
-    console.log(displayQuestions);
-    console.log(stage);
-    for (let i = 0; i < displayQuestions[stage].choices.length; i++) {
-        choices = choices.concat('<button onclick="checkAnswer('+ i +')">' + displayQuestions[stage].choices[i] + ' </button>');
-        console.log(displayQuestions[stage].choices[i]);
+    if(stage < displayQuestions.length){
+        document.getElementById('question-title').innerText = displayQuestions[stage].question;
+        //console.log(displayQuestions);
+        console.log(stage);
+        for (let i = 0; i < displayQuestions[stage].choices.length; i++) {
+            choices = choices.concat('<button onclick="checkAnswer(' + i + ')">' + displayQuestions[stage].choices[i] + ' </button>');
+            //console.log(displayQuestions[stage].choices[i]);
+        }
+        //console.log(choices);
+        document.getElementById('choices').innerHTML = choices;
+    }else {
+        // TODO to end game
     }
-    console.log(choices);
-    document.getElementById('choices').innerHTML = choices;
+
+
 }
 
 function checkAnswer(selectedIndex) {
-    console.log(selectedIndex);
+    //console.log(selectedIndex);
+    let displayQuestions = getFromStorage('questions');
+    let stage = getFromStorage('stage');
+
+    console.log(displayQuestions[stage].answer);
+    console.log(displayQuestions[stage].choices[selectedIndex]);
+    if (displayQuestions[stage].answer === displayQuestions[stage].choices[selectedIndex]) {
+        console.log('correct');
+        //if correct, go to next stage
+        saveToStorage('stage', stage+1);
+        //show next question
+        showQuestion();
+    } else {
+        console.log('incorrect');
+        //TODO reduce time
+    }
 }
 
 function getFromStorage(key) {
