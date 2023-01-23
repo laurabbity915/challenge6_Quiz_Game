@@ -1,11 +1,10 @@
 function gameStart() {
     document.getElementById('start-screen').style.display = 'none';
     document.getElementById("questions").style.display = 'block';
+    saveToStorage('stage', 0);
     getShuffle(questions);
-    //document.getElementById
-    let displayQuestions = getFromStorage('questions');
-    document.getElementById('question-title').innerText = displayQuestions[0].question;
 
+    showQuestion();
 };
 //function for getting a random queation list 
 function getShuffle(arr) {
@@ -19,10 +18,24 @@ function getShuffle(arr) {
     saveToStorage('questions', temp);
 }
 
-function showQuestion(questions) {
-
+function showQuestion() {
+    let displayQuestions = getFromStorage('questions');
+    let choices = '';
+    let stage = getFromStorage('stage');
+    document.getElementById('question-title').innerText = displayQuestions[stage].question;
+    console.log(displayQuestions);
+    console.log(stage);
+    for (let i = 0; i < displayQuestions[stage].choices.length; i++) {
+        choices = choices.concat('<button onclick="checkAnswer('+ i +')">' + displayQuestions[stage].choices[i] + ' </button>');
+        console.log(displayQuestions[stage].choices[i]);
+    }
+    console.log(choices);
+    document.getElementById('choices').innerHTML = choices;
 }
 
+function checkAnswer(selectedIndex) {
+    console.log(selectedIndex);
+}
 
 function getFromStorage(key) {
     return JSON.parse(localStorage.getItem(key));
