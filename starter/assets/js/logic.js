@@ -50,9 +50,7 @@ function showQuestion() {
         document.getElementById('choices').innerHTML = choices;
     } else {
         // TODO to end game
-        document.getElementById('end-screen').style.display = 'block';
-        document.getElementById("questions").style.display = 'none';
-        showFinalScore();
+        showEndScreen();
     }
 
 
@@ -120,8 +118,9 @@ function countdowntimer(seconds) {
 
         if (countdown <= 0) {
             console.log('end countdown')
-            clearInterval(interval);
-            document.getElementById('time').innerText = 'END';
+            clearInterval(interval)
+            // go to end screen when time up;
+            showEndScreen();
         }
     });
 
@@ -156,4 +155,10 @@ function saveInit() {
         saveToStorage('high-score', sorted);
     }
     window.location = 'highscores.html';
+}
+
+function showEndScreen() {
+    document.getElementById('end-screen').style.display = 'block';
+    document.getElementById("questions").style.display = 'none';
+    showFinalScore();
 }

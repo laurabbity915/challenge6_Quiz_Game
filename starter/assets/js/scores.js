@@ -10,9 +10,8 @@ function loadScore() {
         for (let i = 0; i < scores.length; i++) {
             scoreHtml = scoreHtml.concat('<li>' + scores[i].name + ' - ' + scores[i].score + '</li>');
         }
-
-        document.getElementById('highscores').innerHTML = scoreHtml;
     }
+    document.getElementById('highscores').innerHTML = scoreHtml;
 }
 
 // function for geting local storage value
