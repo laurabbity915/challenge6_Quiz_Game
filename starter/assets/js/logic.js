@@ -4,14 +4,16 @@ function gameStart() {
     document.getElementById('start-screen').style.display = 'none';
     // unhide the questions page
     document.getElementById("questions").style.display = 'block';
-
+    // reset score
+    saveToStorage('score', 0);
     // init the game stage
     saveToStorage('stage', 0);
     // shuffle the questions
     getShuffle(questions);
-    countdowntimer(10);
+    countdowntimer(60);
     // display the questions
     showQuestion();
+
 };
 //function for getting a random question list 
 function getShuffle(arr) {
@@ -50,6 +52,7 @@ function showQuestion() {
         // TODO to end game
         document.getElementById('end-screen').style.display = 'block';
         document.getElementById("questions").style.display = 'none';
+        showFinalScore();
     }
 
 
@@ -64,7 +67,13 @@ function checkAnswer(selectedIndex) {
     // check the user answer
     if (displayQuestions[stage].answer === displayQuestions[stage].choices[selectedIndex]) {
         questionResult('you are correct');
-
+        let score = getFromStorage('score');
+        console.log(score);
+        if (score == undefined || score == null) {
+            saveToStorage('score', 1);
+        } else {
+            saveToStorage('score', (score + 1));
+        }
     } else {
         questionResult('you are wrong');
         //TODO subtract time
@@ -89,15 +98,15 @@ function questionResult(result) {
     // show the result message
     document.getElementById('result').style.opacity = 1;
     document.getElementById('result').innerText = result;
-    // hidden the message after 2 seconds 
+    // hidden the message after 3 seconds 
     setInterval(function () {
         console.log('setInterval');
         document.getElementById('result').style.opacity = 0;
-    }, 2000)
+    }, 3000)
 }
 
 
-//countdown timer()
+//countdown timer
 function countdowntimer(seconds) {
     let t = new Date();
     let endTime = new Date(t.getTime() + ((seconds) * 1000));
@@ -119,3 +128,32 @@ function countdowntimer(seconds) {
 };
 
 
+function showFinalScore() {
+    let score = getFromStorage("score");
+    document.getElementById('final-score').innerText = score;
+
+}
+
+function saveInit() {
+    let highScore = getFromStorage('high-score');
+    let userName = document.getElementById('initials').value;
+    let score = getFromStorage('score');
+    if (highScore == null) {
+        let temp = [{
+            name: userName,
+            score: score
+        }]
+
+        saveToStorage('high-score', temp);
+    } else {
+        let temp = {
+            name: userName,
+            score: score
+        }
+        highScore.push(temp)
+        // sort the highest score
+        let sorted = highScore.sort((a, b) => a.score > b.score ? -1 : 1);
+        saveToStorage('high-score', sorted);
+    }
+    window.location = 'highscores.html';
+}
