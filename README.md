@@ -12,5 +12,5 @@ Github link:
 https://github.com/laurabbity915/challenge6_Quiz_Game
 
 Deployed link:
-
+https://laurabbity915.github.io/challenge6_Quiz_Game/
 
