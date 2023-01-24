@@ -160,5 +160,6 @@ function saveInit() {
 function showEndScreen() {
     document.getElementById('end-screen').style.display = 'block';
     document.getElementById("questions").style.display = 'none';
+    document.getElementById("timer").style.display = 'none';
     showFinalScore();
 }
